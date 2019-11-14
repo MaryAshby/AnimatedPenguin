@@ -50,14 +50,14 @@ var changePenguin = function(penguins)
                       .append("button")
                       .text(function(d)
                         {
-                         return "Penguin " + d;
+                         return "Penguin " + d.quizes.grade;
                          })
                       .on("click", function(d)
                         {
                          d3.selectAll("circle")
                            .remove()
         
-                        return drawSampleGraph(penguins, d.day);
+                        return drawSampleGraph(penguins, d.quizes.grade);
                                                             
                         })
             
