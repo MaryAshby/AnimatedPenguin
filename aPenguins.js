@@ -18,9 +18,51 @@ var penguinePromise= d3.json("penguins/classData.json")
                    }
 
 //Set up//
+//making data//
+  
+var getQuizes = function(penguin)
+                 {
+                 return penguin.quizes.map(getGrade);
+                 }
+
+var quizArray = function(penguins)
+                {
+                return penguins.map(getQuizes);
+                }
+
+var getGrade = function(quiz)
+                {
+                return quiz.grade
+                }
+
 
 var screen = {width: 600, height:600}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
+
+//making buttons//
+
+var changePenguin = function(penguins)
+                   {
+                    d3.select("#Buttons")
+                      .selectAll("button")
+                      .data(penguins[0].quizes)
+                      .enter()
+                      .append("button")
+                      .text(function(d)
+                        {
+                         return "Penguin " + d;
+                         })
+                      .on("click", function(d)
+                        {
+                         d3.selectAll("circle")
+                           .remove()
+        
+                        return drawSampleGraph(penguins, d.day);
+                                                            
+                        })
+            
+                     }
+
 
 //set up of svg, scales, and axes//
 
@@ -75,13 +117,13 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
           {
            var arrays = d3.select("#graph")
                           .selectAll("circle")
-                          .data(penguins[index].arr)
+                          .data(penguins[0].arr)
                           .transition()
                           .enter()
                           .append("circle")
                           .attr("fill", function(sweet)
                                 {
-                                 return cScale(penguins[index].quizes);
+                                 return cScale(penguins[0].quizes);
                                  })
                           .attr("cx", function(num, position)
                                 {
