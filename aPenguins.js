@@ -1,14 +1,20 @@
+var setBanner = function(message)
+                {
+                d3.select("#banner").text(message);
+                }
 //Promise//
 
 var penguinePromise= d3.json("penguins/classData.json")
            penguinePromise.then(function(data)
                    {
                      console.log("here",data);
+                     setBanner("Penguin Quizzes");
                      setup(data);
                    }, 
                    function(err)
                    {
                    console.log("WWHHHHHYYYYYYYYYYY",err);
+                   setBanner("Penguins Ditched the Test");
                    }
 
 //Set up//
@@ -70,6 +76,7 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
            var arrays = d3.select("#graph")
                           .selectAll("circle")
                           .data(penguins[index].arr)
+                          .transition()
                           .enter()
                           .append("circle")
                           .attr("fill", function(sweet)
@@ -81,6 +88,7 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
                                  return xScale(position);
                                 })
                           .attr("r", 2)
+          
            }
 //go,go,go//
 setup(data);
