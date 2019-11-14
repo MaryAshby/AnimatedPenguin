@@ -32,7 +32,7 @@ var quizArray = function(penguins)
 
 var getGrade = function(quiz)
                 {
-                return quiz.grade
+                return quiz.grade;
                 }
 
 
