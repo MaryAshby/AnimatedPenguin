@@ -15,7 +15,7 @@ var penguinePromise= d3.json("penguins/classData.json")
                    {
                    console.log("WWHHHHHYYYYYYYYYYY",err);
                    setBanner("Penguins Ditched the Test");
-                   }
+                   })
 
 //Set up//
 //making data//
