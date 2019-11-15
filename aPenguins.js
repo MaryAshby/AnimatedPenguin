@@ -51,7 +51,7 @@ var changePenguin = function(penguin)
                                                             
                         })
             
-             console.log("WWHHHHHYYYYYYYYYYY2")     
+             console.log("WWHHHHHYYYYYYYYYYY2")     //This one isn't logging, the rest are, figure issue is this function//
                    }
                    
 
