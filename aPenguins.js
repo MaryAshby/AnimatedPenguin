@@ -112,8 +112,8 @@ var drawArray = function(getGrade, xScale, yScale, cScale, position) //should th
           {          
            var arrays = d3.select("#graph")
                           .selectAll("circle")
-                          .datum(function(obj)
-                                 {return obj.quizes.map(getGrade)}) //is use of datum correct?//
+                          .data(function(obj)
+                                 {return obj.quizes.map(getGrade)})
                          // .transition()
                           .enter()
                           .append("circle")
