@@ -8,7 +8,7 @@ var setBanner = function(message)
 var penguinePromise= d3.json("penguins/classData.json")
            penguinePromise.then(function(data)
                    {
-                     console.log("here",data);
+                     //console.log("here",data);
                      setBanner("Penguin Quizzes");
                      setup(data);
                    }, 
@@ -26,7 +26,7 @@ var getGrade = function(quiz)
                 return quiz.grade;
                 }
 
-var screen = {width: 600, height:600}
+var screen = {width: 800, height:500}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
 
 //making buttons//
@@ -34,8 +34,8 @@ var margins = {top: 10, right: 50, bottom: 50, left: 50}
 var changePenguin = function(penguins, xScale, yScale, cScale)
                    {
                     d3.select("#buttons")
-                      .selectAll("img")       //what is easiest way to make penguins clickable//
-                      .data(penguins) //what data do I want to bind?//
+                      .selectAll("img")      
+                      .data(penguins) 
                       .enter()
                       .append("img")
                       .attr("src", function(penguin)
@@ -44,14 +44,16 @@ var changePenguin = function(penguins, xScale, yScale, cScale)
                          })
                       .on("click", function(penguin, position)
                         {
-                         d3.selectAll("circle")
-                           .remove()
-        
-                       return drawArray(penguins, xScale, yScale, cScale, position); 
+                        d3.selectAll("circle")
+                          .remove()
+                         
+                
+                    return drawArray(penguins, xScale, yScale, cScale, position); 
+            
                                                             
                         })
             
-             console.log("Hey! I'm working1")     
+            // console.log("Hey! I'm working1")     
                    }
                    
 
@@ -104,9 +106,11 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
              .call(yAxis)
                       
     drawArray(penguins,xScale,yScale,cScale,0);
-    changePenguin(penguins, xScale, yScale, cScale)
+    changePenguin(penguins, xScale, yScale, cScale);
+               
    
-      console.log("Hey! I'm working 2")    
+     // console.log("Hey! I'm working 2")    
+               
            } //function ends here//
 
 var drawArray = function(penguins, xScale, yScale, cScale, position)
@@ -114,9 +118,11 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
            var arrays = d3.select("#graph")
                           .selectAll("circle")
                           .data(penguins[position].quizes)
-                         // .transition()
                           .enter()
                           .append("circle")
+                          .transition()
+                          .delay(200)
+                          .duration(1000)
                           .attr("fill", function(quiz)
                                 {
                                  return cScale(penguins[0].quizes.grade);
@@ -128,11 +134,11 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
                           .attr("cy", function(quiz)
                                 { console.log (quiz)
                                  return yScale(quiz.grade);
-                                 })
-                                
-                          .attr("r", 2)
+                                 })    
+                          .attr("r", 4)
+                       
           
-         console.log("Hey! I'm working3")  
+        // console.log("Hey! I'm working3")  
           }
                  
     
