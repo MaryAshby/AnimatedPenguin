@@ -30,35 +30,35 @@ var screen = {width: 600, height:600}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
 
 //making buttons//
-/*
-var changePenguin = function(penguin)
+
+var changePenguin = function(penguins, xScale, yScale, cScale)
                    {
                     d3.select("#buttons")
                       .selectAll("img")       //what is easiest way to make penguins clickable//
-                      .data(penguin[0].picture) //what data do I want to bind?//
+                      .data(penguins) //what data do I want to bind?//
                       .enter()
                       .append("img")
-                      .attr("src", function(d)
+                      .attr("src", function(penguin)
                         {
-                         return d.picture;
+                         return "penguins/"+penguin.picture;
                          })
-                      .on("click", function(d)
+                      .on("click", function(penguin, position)
                         {
                          d3.selectAll("circle")
                            .remove()
         
-                        return setup(penguin, d.quizes.grade); //this be calling the graph?//
+                       return drawArray(penguins, xScale, yScale, cScale, position); 
                                                             
                         })
             
-             console.log("Hey! I'm working1")     //This one isn't logging, the rest are, figure issue is this function//
+             console.log("Hey! I'm working1")     
                    }
                    
-*/
+
 
 //set up of svg, scales, and axes//
 
-var setup = function(penguin)
+var setup = function(penguins)
            {
            d3.select("svg")
              .attr("width",screen.width)
@@ -103,31 +103,31 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
              .attr("transform","translate(25,"+margins.top+")")
              .call(yAxis)
                       
-    drawArray(getGrade,xScale,yScale,cScale,0); //should this be getGrade?//
+    drawArray(penguins,xScale,yScale,cScale,0);
+    changePenguin(penguins, xScale, yScale, cScale)
    
       console.log("Hey! I'm working 2")    
            } //function ends here//
 
-var drawArray = function(getGrade, xScale, yScale, cScale, position) //should this be getGrade?//
+var drawArray = function(penguins, xScale, yScale, cScale, position)
           {          
            var arrays = d3.select("#graph")
                           .selectAll("circle")
-                          .data(function(obj)
-                                 {return obj.quizes.map(getGrade)})
+                          .data(penguins[position].quizes)
                          // .transition()
                           .enter()
                           .append("circle")
-                          .attr("fill", function(sweet)
+                          .attr("fill", function(quiz)
                                 {
-                                 return cScale(penguin[0].quizes.grade);
+                                 return cScale(penguins[0].quizes.grade);
                                  })
-                          .attr("cx", function(num, position)
+                          .attr("cx", function(quiz, position)
                                 {
                                  return xScale(position);
                                 })
-                          .attr("cy", function(num)
-                                {
-                                 return yScale(num);
+                          .attr("cy", function(quiz)
+                                { console.log (quiz)
+                                 return yScale(quiz.grade);
                                  })
                                 
                           .attr("r", 2)
