@@ -30,7 +30,7 @@ var screen = {width: 600, height:600}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
 
 //making buttons//
-
+/*
 var changePenguin = function(penguin)
                    {
                     d3.select("#buttons")
@@ -54,7 +54,7 @@ var changePenguin = function(penguin)
              console.log("Hey! I'm working1")     //This one isn't logging, the rest are, figure issue is this function//
                    }
                    
-
+*/
 
 //set up of svg, scales, and axes//
 
