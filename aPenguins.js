@@ -14,7 +14,7 @@ var penguinePromise= d3.json("penguins/classData.json")
                    }, 
                    function(err)
                    {
-                   console.log("WWHHHHHYYYYYYYYYYY",err);
+                   console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
                    setBanner("Penguins Ditched the Test");
                    })
 
@@ -51,7 +51,7 @@ var changePenguin = function(penguin)
                                                             
                         })
             
-             console.log("WWHHHHHYYYYYYYYYYY2")     //This one isn't logging, the rest are, figure issue is this function//
+             console.log("Hey! I'm working1")     //This one isn't logging, the rest are, figure issue is this function//
                    }
                    
 
@@ -105,7 +105,7 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
                       
     drawArray(getGrade,xScale,yScale,cScale,0); //should this be getGrade?//
    
-      console.log("WWHHHHHYYYYYYYYYYY3")    
+      console.log("Hey! I'm working 2")    
            } //function ends here//
 
 var drawArray = function(getGrade, xScale, yScale, cScale, position) //should this be getGrade?//
@@ -132,7 +132,7 @@ var drawArray = function(getGrade, xScale, yScale, cScale, position) //should th
                                 
                           .attr("r", 2)
           
-         console.log("WWHHHHHYYYYYYYYYYY4")  
+         console.log("Hey! I'm working3")  
           }
                  
     
