@@ -1,3 +1,4 @@
+
 var setBanner = function(message)
                 {
                 d3.select("#banner").text(message);
@@ -25,50 +26,39 @@ var getGrade = function(quiz)
                 return quiz.grade;
                 }
 
-/*var getQuizes = function(penguin)
-                 {
-                 return penguin.quizes.map(getGrade);
-                 }
-
-var quizArray = function(penguins)
-                {
-                return penguins.map(getQuizes);
-                }
-
-*/
-
-
 var screen = {width: 600, height:600}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
 
 //making buttons//
 
-var changePenguin = function(penguins)
+var changePenguin = function(penguin)
                    {
-                    d3.select("#Buttons")
-                      .selectAll("button")
-                      .data(penguins[0].quizes)
+                    d3.select("#buttons")
+                      .selectAll("img")       //what is easiest way to make penguins clickable//
+                      .data(penguin[0].picture) //what data do I want to bind?//
                       .enter()
-                      .append("button")
-                      .text(function(d)
+                      .append("img")
+                      .attr("src", function(d)
                         {
-                         return "Penguin " + d.quizes.grade;
+                         return d.picture;
                          })
                       .on("click", function(d)
                         {
                          d3.selectAll("circle")
                            .remove()
         
-                        return drawSampleGraph(penguins, d.quizes.grade);
+                        return setup(penguin, d.quizes.grade); //this be calling the graph?//
                                                             
                         })
             
-                     }
+             console.log("WWHHHHHYYYYYYYYYYY2")     
+                   }
+                   
 
 
 //set up of svg, scales, and axes//
 
-var setup = function(penguins)
+var setup = function(penguin)
            {
            d3.select("svg")
              .attr("width",screen.width)
@@ -91,6 +81,7 @@ var yScale= d3.scaleLinear()
 
 var cScale = d3.scaleOrdinal(d3.schemeTableau10)
 
+
 //Axes//
 
  var xAxis = d3.axisBottom(xScale)
@@ -102,33 +93,33 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
     
            d3.select(".axis")
              .append("g")
-             //.style("font","16px times")
              .attr("id","xAxis")
              .attr("transform","translate("+margins.left+","+(margins.top+height)+")")
              .call(xAxis)
     
            d3.select(".axis")
              .append("g")
-             //.style("font","16px times")
              .attr("id","yAxis")
              .attr("transform","translate(25,"+margins.top+")")
              .call(yAxis)
                       
-    drawArray(getGrade,xScale,yScale,cScale,0);
+    drawArray(getGrade,xScale,yScale,cScale,0); //should this be getGrade?//
    
+      console.log("WWHHHHHYYYYYYYYYYY3")    
            } //function ends here//
 
-var drawArray = function(getGrade, xScale, yScale, cScale, position)
-          {
+var drawArray = function(getGrade, xScale, yScale, cScale, position) //should this be getGrade?//
+          {          
            var arrays = d3.select("#graph")
                           .selectAll("circle")
-                          .datum(function(obj){return obj.quizes.map(getGrade)}) 
+                          .datum(function(obj)
+                                 {return obj.quizes.map(getGrade)}) //is use of datum correct?//
                          // .transition()
                           .enter()
                           .append("circle")
                           .attr("fill", function(sweet)
                                 {
-                                 return cScale(penguins[0].quizes.grade);
+                                 return cScale(penguin[0].quizes.grade);
                                  })
                           .attr("cx", function(num, position)
                                 {
@@ -141,7 +132,7 @@ var drawArray = function(getGrade, xScale, yScale, cScale, position)
                                 
                           .attr("r", 2)
           
-           }
-
-                                
+         console.log("WWHHHHHYYYYYYYYYYY4")  
+          }
+                 
     
