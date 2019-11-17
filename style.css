@@ -1,6 +1,6 @@
 body
 {
-  width: 800px;
+  width: 1200px;
   background-color: #D9E4EC;
   color: #385E72;
   font-family: Arial;
@@ -30,4 +30,9 @@ img
 {
   font-size: 16px;
   fill: #385E72;
+}
+
+img
+{
+  float: right;
 }
