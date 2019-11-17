@@ -87,13 +87,11 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
                           .data(penguins[position].quizes)
                           .transition()
                           .duration(2000)
-                          .attr("fill", "black")
-                    /*, function(quiz)
+                          .attr("fill", function(quiz)
                                 {
                                  return cScale(penguins[position].quizes);
                               console.log ("dots");
-                                 } */ 
-                                 )
+                                 })
                           .attr("cx", function(quiz, position)
                                 {
                                  return xScale(position);
