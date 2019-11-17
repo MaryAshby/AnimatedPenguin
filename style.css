@@ -36,3 +36,8 @@ img
 {
   float: right;
 }
+
+#graph
+{
+  float: left;
+}
