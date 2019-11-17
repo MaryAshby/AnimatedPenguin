@@ -35,7 +35,7 @@ var yScale= d3.scaleLinear()
               .range([height,0])
 //colors//
 
-var cScale = d3.scaleOrdinal(d3.schemeTableau10)
+//var cScale = d3.scaleOrdinal(d3.schemeTableau10)//
 
 
 //Axes//
@@ -70,7 +70,7 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
                          })
              .on("click", function(penguin, position)
                         {
-                          drawArray(penguins,xScale,yScale,cScale,position);
+                          drawArray(penguins,xScale,yScale,/*cScale*/,position);
                         })
 
    
@@ -80,7 +80,7 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
 
 //WHY DOESN'T THIS WORK?!//
 
-var drawArray = function(penguins, xScale, yScale, cScale, position)
+var drawArray = function(penguins, xScale, yScale, /*cScale*/, position)
             {              
            var arrays = d3.select("#graph")
                           .selectAll("circle")
@@ -89,9 +89,9 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
                           .duration(2000)
                           .style("fill", "#69b3a2");
 
-                          .attr(/*"fill", */function(quiz)
+                         /* .attr("fill", function(quiz)
                                 {
-                                 return cScale(penguins[position].quizes);
+                                 return cScale(penguins[position].quizes);*/
                               console.log ("dots");
                                  })
                           .attr("cx", function(quiz, position)
