@@ -23,7 +23,7 @@ img
 .axis line
 {
   stroke: #6AABD2;
-  width: 5px;
+  stroke-width: 5px;
 }
 
 .axis text
@@ -34,5 +34,5 @@ img
 
 #buttons
 {
-  float: right;
+  float: left;
 }
