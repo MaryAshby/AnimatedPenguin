@@ -3,62 +3,16 @@ var setBanner = function(message)
                 {
                 d3.select("#banner").text(message);
                 }
-//Promise//
 
-var penguinePromise= d3.json("penguins/classData.json")
-           penguinePromise.then(function(data)
-                   {
-                     //console.log("here",data);
-                     setBanner("Penguin Quizzes");
-                     setup(data);
-                   }, 
-                   function(err)
-                   {
-                   console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
-                   setBanner("Penguins Ditched the Test");
-                   })
 
 //Set up//
 //making data//
-  
-var getGrade = function(quiz)
-                {
-                return quiz.grade;
-                }
 
 var screen = {width: 800, height:500}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
+     
 
-//making buttons//
-
-var changePenguin = function(penguins, xScale, yScale, cScale)
-                   {
-                    d3.select("#buttons")
-                      .selectAll("img")      
-                      .data(penguins) 
-                      .enter()
-                      .append("img")
-                      .attr("src", function(penguin)
-                        {
-                         return "penguins/"+penguin.picture;
-                         })
-                      .on("click", function(penguin, position)
-                        {
-                        d3.selectAll("circle")
-                          .remove()
-                         
-                
-                    return drawArray(penguins, xScale, yScale, cScale, position); 
-            
-                                                            
-                        })
-            
-            // console.log("Hey! I'm working1")     
-                   }
-                   
-
-
-//set up of svg, scales, and axes//
+//set up of svg, scales, axes, buttons//
 
 var setup = function(penguins)
            {
@@ -105,40 +59,67 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
              .attr("transform","translate(25,"+margins.top+")")
              .call(yAxis)
                       
-    drawArray(penguins,xScale,yScale,cScale,0);
-    changePenguin(penguins, xScale, yScale, cScale);
-               
+           d3.select("#buttons")
+             .selectAll("img")      
+             .data(penguins) 
+             .enter()
+             .append("img")
+             .attr("src", function(penguin)
+                        {
+                         return "penguins/"+penguin.picture;
+                         })
+             .on("click", function(penguin, position)
+                        {
+                          drawArray(penguins,xScale,yScale,cScale,position);
+                        })
+
    
-     // console.log("Hey! I'm working 2")    
+     console.log("Hey! I'm working 2")    
                
            } //function ends here//
 
+//WHY DOESN'T THIS WORK?!//
+
 var drawArray = function(penguins, xScale, yScale, cScale, position)
-          {          
+            {              
            var arrays = d3.select("#graph")
                           .selectAll("circle")
                           .data(penguins[position].quizes)
-                          .enter()
-                          .append("circle")
                           .transition()
-                          .delay(200)
-                          .duration(1000)
+                          .duration(2000)
                           .attr("fill", function(quiz)
                                 {
-                                 return cScale(penguins[0].quizes.grade);
+                                 return cScale(penguins[position].quizes);
+                              console.log ("dots");
                                  })
                           .attr("cx", function(quiz, position)
                                 {
                                  return xScale(position);
                                 })
                           .attr("cy", function(quiz)
-                                { console.log (quiz)
+                                { 
+                                 console.log ("C ya")
                                  return yScale(quiz.grade);
                                  })    
                           .attr("r", 4)
                        
           
-        // console.log("Hey! I'm working3")  
-          }
-                 
+        console.log("Hey! I'm working3")  
     
+            }
+                 
+    //Promise//
+
+var penguinePromise= d3.json("penguins/classData.json")
+           penguinePromise.then(function(data)
+                   {
+                     console.log("here");
+                     setBanner("Penguin Quizzes");
+                     setup(data);
+                   }, 
+                   function(err)
+                   {
+                   console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
+                   setBanner("Penguins Ditched the Test");
+                   })
+
