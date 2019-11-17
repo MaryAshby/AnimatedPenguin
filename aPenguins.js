@@ -1,12 +1,27 @@
 
+//Setting up h1 to change in case of failure to load .json file//
+
 var setBanner = function(message)
                 {
                 d3.select("#banner").text(message);
                 }
 
+  //Promise which includes setup call//
 
-//Set up//
-//making data//
+var penguinePromise= d3.json("penguins/classData.json")
+           penguinePromise.then(function(data)
+                   {
+                     console.log("here");
+                     setBanner("Penguin Quizzes");
+                     setup(data);
+                   }, 
+                   function(err)
+                   {
+                   console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
+                   setBanner("Penguins Ditched the Test");
+                   })
+
+//Over all screen size and margins of chart//
 
 var screen = {width: 750, height: 550}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
@@ -33,12 +48,13 @@ var xScale = d3.scaleLinear()
 var yScale= d3.scaleLinear()
               .domain([0,11]) //made extra number for ascetics//
               .range([height,0])
-//colors//
+
+//choice of color scale, this was optional, could have left out cScale and given dots attributes of fill//
 
 var cScale = d3.scaleOrdinal(d3.schemeTableau10)
 
 
-//Axes//
+//Axes, all the weird math relates it to the previously given size of chart//
 
  var xAxis = d3.axisBottom(xScale)
  var yAxis = d3.axisLeft(yScale)
@@ -58,12 +74,45 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
              .attr("id","yAxis")
              .attr("transform","translate(25,"+margins.top+")")
              .call(yAxis)
-                      
+               
+    //WHY DOESN'T THIS WORK?!//
+
+var drawArray = function(penguins, xScale, yScale, cScale, position)
+            {              
+           var arrays = d3.select("#graph")
+                          .selectAll("circle")
+ console.log ("meh")
+                          .data(penguins[position].quizes)
+                          .enter()
+                          .append("circle")
+                          .attr("fill", function(quiz, position)
+                                {
+                                 return cScale(penguins[0].quizes.grade);
+console.log ("dots");
+                                 })
+                          .attr("cx", function(quiz, position)
+                                {
+                                 return xScale(position);
+                                })
+                          .attr("cy", function(quiz)
+                                { 
+console.log ("C ya");
+                                 return yScale(quiz.grade);
+                                 })    
+                          .attr("r", 4)
+                          .remove()
+                       
+          
+  console.log("Hey! I'm working3")  
+    
+            }
+                 
+    
+    //images as buttons for change//
+               
            d3.select("#buttons")
              .selectAll("img")   
-             .append("g")
-             .attr("id", "moveAlong")
-             .data(penguins) 
+             .data(penguins)
              .enter()
              .append("img")
              .attr("src", function(penguin)
@@ -72,56 +121,13 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
                          })
              .on("click", function(penguin, position)
                         {
-                          drawArray(penguins,xScale,yScale,cScale,position);
+                         return drawArray(penguins, xScale, yScale, cScale, position);
                         })
+               
 
-   
-     console.log("Hey! I'm working 2")    
+ console.log("Hey! I'm working 2")    
                
            } //function ends here//
 
-//WHY DOESN'T THIS WORK?!//
 
-var drawArray = function(penguins, xScale, yScale, cScale, position)
-            {              
-           var arrays = d3.select("#graph")
-                          .selectAll("circle")
-                          .data(penguins[position].quizes)
-                          .transition()
-                          .duration(2000)
-                          .attr("fill", function(quiz, position)
-                                {
-                                 return cScale(penguins[position].quizes);
-                              console.log ("dots");
-                                 })
-                          .attr("cx", function(quiz, position)
-                                {
-                                 return xScale(position);
-                                })
-                          .attr("cy", function(quiz)
-                                { 
-                                 console.log ("C ya")
-                                 return yScale(quiz.grade);
-                                 })    
-                          .attr("r", 4)
-                       
-          
-        console.log("Hey! I'm working3")  
-    
-            }
-                 
-    //Promise//
-
-var penguinePromise= d3.json("penguins/classData.json")
-           penguinePromise.then(function(data)
-                   {
-                     console.log("here");
-                     setBanner("Penguin Quizzes");
-                     setup(data);
-                   }, 
-                   function(err)
-                   {
-                   console.log("WWHHHHHYYYYYYYYYYY won't it work?",err);
-                   setBanner("Penguins Ditched the Test");
-                   })
-
+  
