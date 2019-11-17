@@ -23,12 +23,11 @@ img
 .axis line
 {
   stroke: #6AABD2;
-  shape-rendering: crispEdges;
   width: 5px;
 }
 
 .axis text
 {
   font-size: 16px;
-  fill: #6AABD2;
+  fill: #385E72;
 }
