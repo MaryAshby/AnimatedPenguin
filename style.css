@@ -8,7 +8,7 @@ body
   padding-left: 25px;
 }
 
-h1. p
+h1, p
 {
   font-family: Bookman;
   text-align: center;
@@ -35,9 +35,4 @@ img
 #buttons
 {
   float: right;
-}
-
-#graph
-{
-  float: left;
 }
