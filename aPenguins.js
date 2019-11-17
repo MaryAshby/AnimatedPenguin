@@ -8,7 +8,7 @@ var setBanner = function(message)
 //Set up//
 //making data//
 
-var screen = {width: 500, height:500}
+var screen = {width: 600, height:600}
 var margins = {top: 10, right: 50, bottom: 50, left: 50}
      
 
