@@ -4,11 +4,11 @@ body
   background-color: #D9E4EC;
   color: #385E72;
   font-family: Arial;
-  font-size: 16px;
+  font-size: 18px;
   padding-left: 25px;
 }
 
-h1, p
+h1. p
 {
   font-family: Bookman;
   text-align: center;
