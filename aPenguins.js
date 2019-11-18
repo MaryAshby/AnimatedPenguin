@@ -75,37 +75,11 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
              .attr("transform","translate(25,"+margins.top+")")
              .call(yAxis)
                
-    //WHY DOESN'T THIS WORK?!//
-
-var drawArray = function(penguins, xScale, yScale, cScale, position)
-            {              
-           var arrays = d3.select("#graph")
-                          .selectAll("circle")
-                          .data(penguins[position].quizes)
-                          .enter()
-                          .append("circle")
-                          .attr("fill", function(quiz, position)
-                                {
-                                 return cScale(penguins[0].quizes.grade);
-console.log ("dots");
-                                 })
-                          .attr("cx", function(quiz, position)
-                                {
-                                 return xScale(position);
-                                })
-                          .attr("cy", function(quiz)
-                                { 
-console.log ("C ya");
-                                 return yScale(quiz.grade);
-                                 })    
-                          .attr("r", 4)
-                          .remove()
-                       
-          
-  console.log("Hey! I'm working3")  
-    
-            }
-                 
+          d3.select("#graph")
+            .selectAll("circle")
+            .data(penguins[0].quizes)
+            .enter()
+            .append("circle")
     
     //images as buttons for change//
                
@@ -123,10 +97,38 @@ console.log ("C ya");
                          return drawArray(penguins, xScale, yScale, cScale, position);
                         })
                
-
+return drawArray(penguins, xScale, yScale, cScale, 0)
  console.log("Hey! I'm working 2")    
                
            } //function ends here//
 
 
-  
+  var drawArray = function(penguins, xScale, yScale, cScale, position)
+            {              
+           var arrays = d3.select("#graph")
+                          .selectAll("circle")
+                          .data(penguins[position].quizes)
+                          .transition()
+                          
+                          .attr("fill", function(quiz, position)
+                                {
+                                 return cScale(penguins[0].quizes.grade);
+console.log ("dots");
+                                 })
+                          .attr("cx", function(quiz, position)
+                                {
+                                 return xScale(position);
+                                })
+                          .attr("cy", function(quiz)
+                                { 
+console.log ("C ya");
+                                 return yScale(quiz.grade);
+                                 })    
+                          .attr("r", 4)
+
+                       
+          
+  console.log("Hey! I'm working3")  
+    
+            }
+                 
