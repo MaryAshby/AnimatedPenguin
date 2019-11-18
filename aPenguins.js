@@ -81,7 +81,6 @@ var drawArray = function(penguins, xScale, yScale, cScale, position)
             {              
            var arrays = d3.select("#graph")
                           .selectAll("circle")
- console.log ("meh")
                           .data(penguins[position].quizes)
                           .enter()
                           .append("circle")
