@@ -110,7 +110,8 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
                           .selectAll("circle")
                           .data(penguins[position].quizes)
                           .transition()
-                          
+                          .duration(750)
+                          .ease(d3.easeBackInOut.overshoot(2))
                           .attr("fill", function(quiz, position)
                                 {
                                  return cScale(penguins[0].quizes.grade);
