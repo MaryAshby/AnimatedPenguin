@@ -24,7 +24,7 @@ var penguinePromise= d3.json("penguins/classData.json")
 //Over all screen size and margins of chart//
 
 var screen = {width: 750, height: 550}
-var margins = {top: 10, right: 50, bottom: 50, left: 50}
+var margins = {top: 10, right: 50, bottom: 50, left: 25}
      
 
 //set up of svg, scales, axes, buttons//
@@ -83,7 +83,7 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
     
     //images as buttons for change//
                
-           d3.select("#buttons")
+           d3.select(".penPics")
              .selectAll("img")   
              .data(penguins)
              .enter()
@@ -97,8 +97,9 @@ var cScale = d3.scaleOrdinal(d3.schemeTableau10)
                          return drawArray(penguins, xScale, yScale, cScale, position);
                         })
                
-return drawArray(penguins, xScale, yScale, cScale, 0)
- console.log("Hey! I'm working 2")    
+              return drawArray(penguins, xScale, yScale, cScale, 0)
+               
+ //console.log("Hey! I'm working 2")    
                
            } //function ends here//
 
@@ -113,7 +114,7 @@ return drawArray(penguins, xScale, yScale, cScale, 0)
                           .attr("fill", function(quiz, position)
                                 {
                                  return cScale(penguins[0].quizes.grade);
-console.log ("dots");
+//console.log ("dots");
                                  })
                           .attr("cx", function(quiz, position)
                                 {
@@ -121,14 +122,14 @@ console.log ("dots");
                                 })
                           .attr("cy", function(quiz)
                                 { 
-console.log ("C ya");
+//console.log ("C ya");
                                  return yScale(quiz.grade);
                                  })    
                           .attr("r", 4)
 
                        
           
-  console.log("Hey! I'm working3")  
+  //console.log("Hey! I'm working3")  
     
             }
                  
