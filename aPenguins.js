@@ -24,7 +24,7 @@ var penguinePromise= d3.json("penguins/classData.json")
 //Over all screen size and margins of chart//
 
 var screen = {width: 750, height: 550}
-var margins = {top: 10, right: 50, bottom: 50, left: 50}
+var margins = {top: 10, right: 50, bottom: 50, left: 25}
      
 
 //set up of svg, scales, axes, buttons//
