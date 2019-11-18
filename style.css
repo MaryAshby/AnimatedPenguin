@@ -16,7 +16,7 @@ h1, p
 
 img
 {
-  height: 105px;
+  height: 93px;
 }
 
 .axis path,
@@ -32,7 +32,15 @@ img
   fill: #385E72;
 }
 
-#moveAlong
+.toTheLeft
 {
+    width: 600px;
+    float: left;
+}
+
+.penPics
+{
+  width: 435px;
   float: right;
 }
+
